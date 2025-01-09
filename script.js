@@ -10,7 +10,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
         'king': '♔'
     };
 
-    // Fungsi untuk membuat papan catur
     function createBoard() {
         let html = '';
         for (let row = 0; row < 8; row++) {
@@ -23,13 +22,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }
         chessboard.innerHTML = html;
         
-        // Menempatkan bidak catur
         placePieces();
     }
 
-    // Fungsi untuk menempatkan bidak catur
     function placePieces() {
-        // Posisi awal bidak putih
         for (let col = 0; col < 8; col++) {
             setPiece(6, col, 'pawn');
         }
@@ -38,8 +34,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         setPiece(7, 2, 'bishop'); setPiece(7, 5, 'bishop');
         setPiece(7, 3, 'queen');
         setPiece(7, 4, 'king');
-
-        // Posisi awal bidak hitam
+        
         for (let col = 0; col < 8; col++) {
             setPiece(1, col, 'pawn');
         }
@@ -49,20 +44,17 @@ document.addEventListener('DOMContentLoaded', (event) => {
         setPiece(0, 3, 'queen');
         setPiece(0, 4, 'king');
     }
-
-    // Fungsi untuk menempatkan bidak di posisi tertentu
+ 
     function setPiece(row, col, piece) {
         const square = squares[row * 8 + col];
         square.textContent = pieces[piece];
         square.dataset.piece = piece;
     }
 
-    // Event listener untuk klik pada kotak
     squares.forEach(square => {
         square.addEventListener('click', function() {
             const piece = this.dataset.piece;
             if (piece === 'pawn') {
-                // Contoh gerakan pion sederhana: hanya ke depan satu langkah
                 const row = parseInt(this.dataset.row);
                 const col = parseInt(this.dataset.col);
                 if (row > 0 && !squares[(row - 1) * 8 + col].dataset.piece) {
